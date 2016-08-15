@@ -5,7 +5,17 @@ use App\Controller\AppController;
 
 class HeloController extends AppController
 {
-		public function index($a = '',$b = '')
+
+	public function add(){
+
+	if ($this->request->is('post')) {
+            $person = $this->Persons->newEntity();
+            $person = $this->Persons->patchEntity($person, $this->request->data);
+            if ($this->Persons->save($person)) {
+					                return $this->redirect(['action' => 'index']);
+					            }
+        }	}
+	public function index($a = '',$b = '')
 				{
 					$this->set('message', 'Hello! this is sample page. ;-)');	
 					$str = $this->request->data('text1');
